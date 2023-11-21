@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import proj.tp.nba.Entity.Joueur;
 
 @Repository
-public interface JoueurRipository extends JpaRepository<Joueur, Integer> {
+public interface JoueurRepository extends JpaRepository<Joueur, Integer> {
 
 }
