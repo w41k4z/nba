@@ -42,6 +42,8 @@ create table MATCH_DETAILS (
 
 
 -- Créer une nouvelle table pour enregistrer les joueurs participants à un match
+
+-- denormalisation car un joueur peut changer d'equipe dans le temps
 CREATE TABLE MATCH_PLAYERS (
     MATCH_PLAYER_ID SERIAL PRIMARY KEY,
     MATCH_ID INT references match(MACTH_ID),
