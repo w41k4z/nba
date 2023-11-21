@@ -1,17 +1,25 @@
 -- Data for the table TEAM
 INSERT INTO TEAM (TEAM_SIMPLE_NAME, TEAM_NAME) VALUES
-('GSW', 'Golden State Warriors'),
-('LAL', 'Los Angeles Lakers'),
+('PHI', 'Philadelphia 76ers'),
 ('BOS', 'Boston Celtics'),
 ('MIA', 'Miami Heat'),
 ('UTA', 'UTA JAZZ');
 
 -- Data for the table PLAYER
-INSERT INTO PLAYER (PLAYER_NAME, TEAM_ID) VALUES
-('Stephen Curry', 1),
-('LeBron James', 2),
-('Jayson Tatum', 3),
-('Jimmy Butler', 4);
+INSERT INTO PLAYER (PLAYER_NAME, TEAM_ID, PLAYER_PHOTOS) VALUES
+-- PHI
+('Joel Embiid', 1, 'joel_embiid.png'),
+('Tyrese Maxey', 1, 'tyrese_maxey.png'),
+('Tobias Harris', 1, 'tobias_harris.png'),
+('Kelly Oubre Jr.', 1, 'kelly_oubre_jr.png'),
+('Patrick Beverley', 1, 'patrick_beverley.png'),
+-- BOS
+('Jayson Tatum', 2, 'jayson_tatum.png'),
+('Jrue Holiday', 2, 'jrue_holiday.png'),
+('Jaylen Brown', 2, 'jaylen_brown.png'),
+('Derrick White', 2, 'derrick_white.png'),
+('Kristaps Porzingis', 2, 'kristaps_porzingis.png');
+
 
 -- Data for the table Match
 INSERT INTO Match (TEAM1_ID, TEAM2_ID, MATCH_DESCRPTION, score1, score2, MACTH_DATE) VALUES
