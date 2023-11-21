@@ -13,6 +13,8 @@ INSERT INTO PLAYER (PLAYER_NAME, TEAM_ID) VALUES
 ('Jayson Tatum', 3),
 ('Jimmy Butler', 4);
 
+INSERT INTO PLAYER (PLAYER_NAME, TEAM_ID) VALUES
+('Dylan',5);
 -- Data for the table Match
 INSERT INTO Match (TEAM1_ID, TEAM2_ID, MATCH_DESCRPTION, score1, score2, MACTH_DATE) VALUES
 (1, 2, 'Season Opener', 110, 108, '2023-01-01'),
@@ -41,14 +43,20 @@ INSERT INTO MATCH_PLAYERS (MATCH_ID, PLAYER_ID, TEAM_ID) VALUES
 
 
 -- Data for the table MACTH_DETAILS-- Données pour le match avec l'identifiant 1 (inclus toutes les variations d'actions)
-INSERT INTO MATCH_DETAILS (PLAYER_ID, MACTH_ID, ACTION_ID, ACTION_MINUTES) VALUES
-(1, 1, 1, 2.5),   -- LeBron James fait un tir à trois points manqué
-(2, 1, 2, 4.8),   -- Stephen Curry fait un tir à deux points manqué
-(3, 1, 3, 8.3),   -- Jayson Tatum rate un lancer franc
-(4, 1, 4, 12.0),  -- Jimmy Butler réussit un lancer franc
-(1, 1, 5, 15.2),  -- LeBron James fait un tir à deux points réussi
-(2, 1, 6, 18.7),  -- Stephen Curry fait un tir à trois points réussi
-(3, 1, 7, 22.1),  -- Jayson Tatum réalise une passe décisive
-(4, 1, 8, 25.6),  -- Jimmy Butler réalise un vol de balle
-(1, 1, 9, 28.9),  -- LeBron James réalise un blocage
-(2, 1, 10, 32.4); -- Stephen Curry prend un rebond
+-- Données fictives pour la table MATCH_DETAILS
+INSERT INTO MATCH_DETAILS (PLAYER_ID, TEAM_ID, MACTH_ID, ACTION_ID, ACTION_MINUTES) VALUES
+(1, 1, 1, 1, 2.5),  
+(2, 2, 1, 2, 4.8),  
+-- (3, 3, 1, 3, 8.3),  
+-- (4, 4, 1, 4, 1.2),  
+(1, 1, 1, 5, 5.7),  
+(2, 2, 1, 6, 7.4),  
+-- (3, 3, 1, 7, 3.1),  
+-- (4, 4, 1, 8, 6.6),  
+(1, 1, 1, 9, 2.0),  
+(2, 2, 1, 10, 4.5); 
+
+
+INSERT INTO MATCH_DETAILS (PLAYER_ID, TEAM_ID, MACTH_ID, ACTION_ID, ACTION_MINUTES) VALUES (2, 2, 1, 5, 4.8),  
+
+select macth_id , match_details.player_id , PLAYER_NAME  from match_details join player on player.PLAYER_ID = match_details.player_id where ACTION_ID = 6 ;

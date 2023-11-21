@@ -33,6 +33,7 @@ create table actions (
 create table MATCH_DETAILS (
     MATCH_DETAILS_ID SERIAL primary key ,
     PLAYER_ID INT ,
+    TEAM_ID int references team(TEAM_ID) ,
     MACTH_ID INT ,
     ACTION_ID int ,
     ACTION_MINUTES double precision,

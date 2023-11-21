@@ -14,16 +14,260 @@ GROUP BY
 
 -- Create a view to show the number of matches played by each player
 -- Créer une vue pour calculer le nombre de matchs auxquels chaque joueur a participé
-CREATE VIEW PlayerMatchParticipation AS
-    SELECT
-        p.PLAYER_ID,
-        p.PLAYER_NAME,
-        COUNT(mp.MATCH_ID) AS MATCH_PARTICIPATION_COUNT
-    FROM
-        PLAYER p
-    LEFT JOIN
-        MATCH_PLAYERS mp ON p.PLAYER_ID = mp.PLAYER_ID
-    GROUP BY
-        p.PLAYER_ID, p.PLAYER_NAME;
+CREATE VIEW PlayerMatchCount AS
+SELECT
+    p.PLAYER_ID,
+    p.PLAYER_NAME,
+    COUNT(mp.MATCH_ID) AS MATCH_COUNT
+FROM
+    PLAYER p
+LEFT JOIN
+    MATCH_PLAYERS mp ON p.PLAYER_ID = mp.PLAYER_ID
+GROUP BY
+    p.PLAYER_ID, p.PLAYER_NAME;
 
 
+-- trois points reussis par joueur par match
+-- CREATE VIEW PlayerThreePointers AS
+-- SELECT
+--     p.PLAYER_ID,
+--     p.PLAYER_NAME,
+--     md.MACTH_ID,
+--     COALESCE(COUNT(CASE WHEN a.actions = 'Three-Pointer-OK' THEN 1 ELSE NULL END), 0) AS THREE_POINTERS_MADE_COUNT
+-- FROM
+--     PLAYER p
+-- JOIN
+--     MATCH_DETAILS md ON p.PLAYER_ID = md.PLAYER_ID
+-- LEFT JOIN
+--     actions a ON md.ACTION_ID = a.ACTION_ID
+-- GROUP BY
+--     p.PLAYER_ID, p.PLAYER_NAME, md.MACTH_ID;
+
+
+
+-- Créer une vue pour calculer le nombre de tirs à trois points réussis par joueur
+
+CREATE VIEW PlayerThreePointers AS
+SELECT
+    p.PLAYER_ID,
+    p.PLAYER_NAME,
+    COALESCE(md.TEAM_ID, p.PLAYER_ID) AS TEAM_ID,  -- Utilisation de COALESCE pour gérer le cas où md.TEAM_ID est NULL
+    COALESCE(COUNT(CASE WHEN a.actions = 'Three-Pointer-OK' THEN 1 ELSE NULL END), 0) AS THREE_POINTERS_MADE_COUNT
+FROM
+    PLAYER p
+LEFT JOIN
+    MATCH_DETAILS md ON p.PLAYER_ID = md.PLAYER_ID
+LEFT JOIN
+    actions a ON md.ACTION_ID = a.ACTION_ID
+GROUP BY
+    p.PLAYER_ID, p.PLAYER_NAME, md.TEAM_ID;
+
+
+
+CREATE VIEW PLAYERTHREEPOINTERSMISSED AS
+SELECT
+    p.PLAYER_ID,
+    p.PLAYER_NAME,
+    COALESCE(md.TEAM_ID, p.PLAYER_ID) AS TEAM_ID,  -- Utilisation de COALESCE pour gérer le cas où md.TEAM_ID est NULL
+    COALESCE(COUNT(CASE WHEN a.actions = 'Three-Pointer-MISSED' THEN 1 ELSE NULL END), 0) AS THREE_POINTERS_MISSED_COUNT
+FROM
+    PLAYER p
+LEFT JOIN
+    MATCH_DETAILS md ON p.PLAYER_ID = md.PLAYER_ID
+LEFT JOIN
+    actions a ON md.ACTION_ID = a.ACTION_ID
+GROUP BY
+    p.PLAYER_ID, p.PLAYER_NAME , md.TEAM_ID;
+
+
+
+
+CREATE VIEW PlayerTwoPointersMissed AS
+SELECT
+    p.PLAYER_ID,
+    p.PLAYER_NAME,
+    COALESCE(md.TEAM_ID, p.PLAYER_ID) AS TEAM_ID,  -- Utilisation de COALESCE pour gérer le cas où md.TEAM_ID est NULL
+    COALESCE(COUNT(CASE WHEN a.actions = 'Two-Pointer-MISSED' THEN 1 ELSE NULL END), 0) AS TWO_POINTERS_MISSED_COUNT
+FROM
+    PLAYER p
+LEFT JOIN
+    MATCH_DETAILS md ON p.PLAYER_ID = md.PLAYER_ID
+LEFT JOIN
+    actions a ON md.ACTION_ID = a.ACTION_ID
+GROUP BY
+    p.PLAYER_ID, p.PLAYER_NAME , md.TEAM_ID;
+
+
+
+CREATE VIEW PlayerFreeThrowMissed AS
+SELECT
+    p.PLAYER_ID,
+    p.PLAYER_NAME,
+    COALESCE(md.TEAM_ID, p.PLAYER_ID) AS TEAM_ID,  -- Utilisation de COALESCE pour gérer le cas où md.TEAM_ID est NULL
+    COALESCE(COUNT(CASE WHEN a.actions = 'Free Throw-MISSED' THEN 1 ELSE NULL END), 0) AS FREE_THROWS_MISSED_COUNT
+FROM
+    PLAYER p
+LEFT JOIN
+    MATCH_DETAILS md ON p.PLAYER_ID = md.PLAYER_ID
+LEFT JOIN
+    actions a ON md.ACTION_ID = a.ACTION_ID
+GROUP BY
+    p.PLAYER_ID, p.PLAYER_NAME , md.TEAM_ID;
+
+
+
+
+CREATE VIEW PlayerFreeThrowMade AS
+SELECT
+    p.PLAYER_ID,
+    p.PLAYER_NAME,
+    COALESCE(md.TEAM_ID, p.PLAYER_ID) AS TEAM_ID,  -- Utilisation de COALESCE pour gérer le cas où md.TEAM_ID est NULL
+    COALESCE(COUNT(CASE WHEN a.actions = 'Free Throw-OK' THEN 1 ELSE NULL END), 0) AS FREE_THROWS_MADE_COUNT
+FROM
+    PLAYER p
+LEFT JOIN
+    MATCH_DETAILS md ON p.PLAYER_ID = md.PLAYER_ID
+LEFT JOIN
+    actions a ON md.ACTION_ID = a.ACTION_ID
+GROUP BY
+    p.PLAYER_ID, p.PLAYER_NAME , md.TEAM_ID;
+
+
+CREATE VIEW PlayerTwoPointersMade AS
+SELECT
+    p.PLAYER_ID,
+    p.PLAYER_NAME,
+    COALESCE(md.TEAM_ID, p.PLAYER_ID) AS TEAM_ID,  -- Utilisation de COALESCE pour gérer le cas où md.TEAM_ID est NULL
+    COALESCE(COUNT(CASE WHEN a.actions = 'Two-Pointer-OK' THEN 1 ELSE NULL END), 0) AS TWO_POINTERS_MADE_COUNT
+FROM
+    PLAYER p
+LEFT JOIN
+    MATCH_DETAILS md ON p.PLAYER_ID = md.PLAYER_ID
+LEFT JOIN
+    actions a ON md.ACTION_ID = a.ACTION_ID
+GROUP BY
+    p.PLAYER_ID, p.PLAYER_NAME , md.TEAM_ID;
+
+
+
+
+CREATE VIEW PlayerAssists AS
+SELECT
+    p.PLAYER_ID,
+    p.PLAYER_NAME,
+    
+    COALESCE(md.TEAM_ID, p.PLAYER_ID) AS TEAM_ID,  -- Utilisation de COALESCE pour gérer le cas où md.TEAM_ID est NULL
+    COALESCE(COUNT(CASE WHEN a.actions = 'Assist' THEN 1 ELSE NULL END), 0) AS ASSISTS_COUNT
+FROM
+    PLAYER p
+LEFT JOIN
+    MATCH_DETAILS md ON p.PLAYER_ID = md.PLAYER_ID
+LEFT JOIN
+    actions a ON md.ACTION_ID = a.ACTION_ID
+GROUP BY
+    p.PLAYER_ID, p.PLAYER_NAME , md.TEAM_ID ;
+
+
+
+CREATE VIEW PlayerSteals AS
+SELECT
+    p.PLAYER_ID,
+    p.PLAYER_NAME,
+    COALESCE(md.TEAM_ID, p.PLAYER_ID) AS TEAM_ID,  -- Utilisation de COALESCE pour gérer le cas où md.TEAM_ID est NULL
+    COALESCE(COUNT(CASE WHEN a.actions = 'Steal' THEN 1 ELSE NULL END), 0) AS STEALS_COUNT
+FROM
+    PLAYER p
+LEFT JOIN
+    MATCH_DETAILS md ON p.PLAYER_ID = md.PLAYER_ID
+LEFT JOIN
+    actions a ON md.ACTION_ID = a.ACTION_ID
+GROUP BY
+    p.PLAYER_ID, p.PLAYER_NAME , md.TEAM_ID;
+
+
+CREATE VIEW PlayerBlocks AS
+SELECT
+    p.PLAYER_ID,
+    p.PLAYER_NAME,
+    COALESCE(md.TEAM_ID, p.PLAYER_ID) AS TEAM_ID,  -- Utilisation de COALESCE pour gérer le cas où md.TEAM_ID est NULL
+    COALESCE(COUNT(CASE WHEN a.actions = 'Block' THEN 1 ELSE NULL END), 0) AS BLOCKS_COUNT
+FROM
+    PLAYER p
+LEFT JOIN
+    MATCH_DETAILS md ON p.PLAYER_ID = md.PLAYER_ID
+LEFT JOIN
+    actions a ON md.ACTION_ID = a.ACTION_ID
+GROUP BY
+    p.PLAYER_ID, p.PLAYER_NAME , md.TEAM_ID;
+
+
+CREATE VIEW PlayerRebounds AS
+SELECT
+    p.PLAYER_ID,
+    p.PLAYER_NAME,
+    COALESCE(md.TEAM_ID, p.PLAYER_ID) AS TEAM_ID,  -- Utilisation de COALESCE pour gérer le cas où md.TEAM_ID est NULL
+    COALESCE(COUNT(CASE WHEN a.actions = 'REBOUND' THEN 1 ELSE NULL END), 0) AS REBOUNDS_COUNT
+FROM
+    PLAYER p
+LEFT JOIN
+    MATCH_DETAILS md ON p.PLAYER_ID = md.PLAYER_ID
+LEFT JOIN
+    actions a ON md.ACTION_ID = a.ACTION_ID
+GROUP BY
+    p.PLAYER_ID, p.PLAYER_NAME , md.TEAM_ID;
+
+
+
+CREATE VIEW PlayerShootingPercentages AS
+SELECT
+    pt.PLAYER_ID,
+    pt.PLAYER_NAME,
+    pt.TEAM_ID,
+    CASE
+        WHEN pt.THREE_POINTERS_MADE_COUNT + ptpm.THREE_POINTERS_MISSED_COUNT > 0
+            THEN (pt.THREE_POINTERS_MADE_COUNT * 100.0) / (pt.THREE_POINTERS_MADE_COUNT + ptpm.THREE_POINTERS_MISSED_COUNT)
+        ELSE 0
+    END AS THREE_POINTERS_PERCENTAGE,
+    CASE
+        WHEN ptm_ok.TWO_POINTERS_MADE_COUNT + ptm.TWO_POINTERS_MISSED_COUNT > 0
+            THEN (ptm_ok.TWO_POINTERS_MADE_COUNT * 100.0) / (ptm_ok.TWO_POINTERS_MADE_COUNT + ptm.TWO_POINTERS_MISSED_COUNT)
+        ELSE 0
+    END AS TWO_POINTERS_PERCENTAGE,
+    CASE
+        WHEN pft.FREE_THROWS_MADE_COUNT + pftm.FREE_THROWS_MISSED_COUNT > 0
+            THEN (pft.FREE_THROWS_MADE_COUNT * 100.0) / (pft.FREE_THROWS_MADE_COUNT + pftm.FREE_THROWS_MISSED_COUNT)
+        ELSE 0
+    END AS FREE_THROWS_PERCENTAGE
+FROM
+    PlayerThreePointers pt
+LEFT JOIN
+    PLAYERTHREEPOINTERSMISSED ptpm ON pt.PLAYER_ID = ptpm.PLAYER_ID
+LEFT JOIN
+    PlayerTwoPointersMissed ptm ON pt.PLAYER_ID = ptm.PLAYER_ID
+LEFT JOIN
+    PlayerFreeThrowMissed pftm ON pt.PLAYER_ID = pftm.PLAYER_ID
+LEFT JOIN
+    PlayerFreeThrowMade pft ON pt.PLAYER_ID = pft.PLAYER_ID
+LEFT JOIN
+    PlayerTwoPointersMade ptm_ok ON pt.PLAYER_ID = ptm_ok.PLAYER_ID;
+
+
+
+
+CREATE VIEW PlayerStatistics AS
+SELECT
+    psp.*,
+    COALESCE(pa.ASSISTS_COUNT, 0) AS TOTAL_ASSISTS,
+    COALESCE(pr.REBOUNDS_COUNT, 0) AS TOTAL_REBOUNDS,
+    COALESCE(pb.BLOCKS_COUNT, 0) AS TOTAL_BLOCKS,
+    COALESCE(ps.STEALS_COUNT, 0) AS TOTAL_STEALS
+FROM
+    PlayerShootingPercentages psp
+LEFT JOIN
+    PlayerAssists pa ON psp.PLAYER_ID = pa.PLAYER_ID
+LEFT JOIN
+    PlayerRebounds pr ON psp.PLAYER_ID = pr.PLAYER_ID
+LEFT JOIN
+    PlayerBlocks pb ON psp.PLAYER_ID = pb.PLAYER_ID
+LEFT JOIN
+    PlayerSteals ps ON psp.PLAYER_ID = ps.PLAYER_ID;
