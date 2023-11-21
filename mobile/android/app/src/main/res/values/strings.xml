@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">nba team stat</string>
+    <string name="title_activity_main">nba team stat</string>
+    <string name="package_name">proj.tp.nba</string>
+    <string name="custom_url_scheme">proj.tp.nba</string>
+</resources>

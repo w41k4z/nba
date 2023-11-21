@@ -1,16 +1,22 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
-import './Tab1.css';
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/react";
+import ExploreContainer from "../components/ExploreContainer";
+import "./Tab1.css";
 
 const Tab1: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader translucent={true}>
         <IonToolbar>
-          <IonTitle>Tab 1</IonTitle>
+          <IonTitle>NBA</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent fullscreen className="ion-padding">
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Tab 1</IonTitle>
