@@ -41,6 +41,14 @@ create table MATCH_DETAILS (
 );
 
 
+-- Créer une nouvelle table pour enregistrer les joueurs participants à un match
+CREATE TABLE MATCH_PLAYERS (
+    MATCH_PLAYER_ID SERIAL PRIMARY KEY,
+    MATCH_ID INT references match(MACTH_ID),
+    PLAYER_ID INT references player(PLAYER_ID),
+    TEAM_ID int references team(TEAM_ID)
+
+);
 
 
 -- create view crossjoin_action_player as select  idjoueur , actions  , points , idactions  , idequipe from joueur cross join  actions where idactions !='9' and idactions !='8' ;

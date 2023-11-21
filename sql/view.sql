@@ -13,14 +13,17 @@ GROUP BY
 
 
 -- Create a view to show the number of matches played by each player
-CREATE VIEW PlayerMatchCount AS
+-- Créer une vue pour calculer le nombre de matchs auxquels chaque joueur a participé
+CREATE VIEW PlayerMatchParticipation AS
 SELECT
     p.PLAYER_ID,
     p.PLAYER_NAME,
-    COUNT(md.MATCH_DETAILS_ID) AS MATCH_COUNT
+    COUNT(mp.MATCH_ID) AS MATCH_PARTICIPATION_COUNT
 FROM
     PLAYER p
 LEFT JOIN
-    MATCH_DETAILS md ON p.PLAYER_ID = md.PLAYER_ID
+    MATCH_PLAYERS mp ON p.PLAYER_ID = mp.PLAYER_ID
 GROUP BY
     p.PLAYER_ID, p.PLAYER_NAME;
+
+
