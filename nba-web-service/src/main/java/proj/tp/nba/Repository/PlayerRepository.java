@@ -3,9 +3,9 @@
 // import org.springframework.data.jpa.repository.JpaRepository;
 // import org.springframework.stereotype.Repository;
 
-// import proj.tp.nba.Entity.Action;
+// import proj.tp.nba.Entity.Player;
 
 // @Repository
-// public interface ActionRepository extends JpaRepository<Action, Integer> {
+// public interface PlayerRepository extends JpaRepository<Player, Integer> {
 
 // }

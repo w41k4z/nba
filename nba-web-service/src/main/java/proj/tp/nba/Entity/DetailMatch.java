@@ -1,63 +1,75 @@
-package proj.tp.nba.Entity;
+// package proj.tp.nba.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+// import javax.persistence.Entity;
+// import javax.persistence.FetchType;
+// import javax.persistence.GeneratedValue;
+// import javax.persistence.GenerationType;
+// import javax.persistence.Id;
+// import javax.persistence.ManyToOne;
+// import javax.persistence.Table;
 
-@Entity
-public class DetailMatch {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idDetailMatch;
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Match match;
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Joueur joueur;
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Action action;
+// @Entity
 
-    private double actionMinutes;
+// public class DetailMatch {
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private Integer match_details_id;
+//     @ManyToOne(optional = false, fetch = FetchType.EAGER)
+//     private Match match_id;
+//     @ManyToOne(optional = false, fetch = FetchType.EAGER)
+//     private Player player_id;
+//     @ManyToOne(optional = false, fetch = FetchType.EAGER)
+//     private Action action_id;
 
-    public Integer getIdDetailMatch() {
-        return idDetailMatch;
-    }
+//     private double action_minutes;
+//     private Team equipe;
 
-    public void setIdDetailMatch(Integer idDetailMatch) {
-        this.idDetailMatch = idDetailMatch;
-    }
+//     public Integer getMatch_details_id() {
+//         return match_details_id;
+//     }
 
-    public Match getMatch() {
-        return match;
-    }
+//     public void setMatch_details_id(Integer match_details_id) {
+//         this.match_details_id = match_details_id;
+//     }
 
-    public void setMatch(Match match) {
-        this.match = match;
-    }
+//     public Match getMatch_id() {
+//         return match_id;
+//     }
 
-    public Joueur getJoueur() {
-        return joueur;
-    }
+//     public void setMatch_id(Match match_id) {
+//         this.match_id = match_id;
+//     }
 
-    public void setJoueur(Joueur joueur) {
-        this.joueur = joueur;
-    }
+//     public Player getPlayer_id() {
+//         return player_id;
+//     }
 
-    public Action getAction() {
-        return action;
-    }
+//     public void setPlayer_id(Player player_id) {
+//         this.player_id = player_id;
+//     }
 
-    public void setAction(Action action) {
-        this.action = action;
-    }
+//     public Action getAction_id() {
+//         return action_id;
+//     }
 
-    public double getActionMinutes() {
-        return actionMinutes;
-    }
+//     public void setAction_id(Action action_id) {
+//         this.action_id = action_id;
+//     }
 
-    public void setActionMinutes(double actionMinutes) {
-        this.actionMinutes = actionMinutes;
-    }
-}
+//     public double getAction_minutes() {
+//         return action_minutes;
+//     }
+
+//     public void setAction_minutes(double action_minutes) {
+//         this.action_minutes = action_minutes;
+//     }
+
+//     public Team getEquipe() {
+//         return equipe;
+//     }
+
+//     public void setEquipe(Team equipe) {
+//         this.equipe = equipe;
+//     }
+
+// }

@@ -1,27 +1,29 @@
-package proj.tp.nba.Entity;
+// package proj.tp.nba.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+// import javax.persistence.Entity;
+// import javax.persistence.Id;
 
-@Entity
-public class Action {
-    @Id
-    private Integer IdAction;
-    private String action;
+// @Entity
+// public class Action {
+//     @Id
+//     private Integer action_id;
+//     private String action;
 
-    public Integer getIdAction() {
-        return IdAction;
-    }
 
-    public void setIdAction(Integer idAction) {
-        IdAction = idAction;
-    }
+//     public String getAction() {
+//         return action;
+//     }
 
-    public String getAction() {
-        return action;
-    }
+//     public void setAction(String action) {
+//         this.action = action;
+//     }
 
-    public void setAction(String action) {
-        this.action = action;
-    }
-}
+//     public Integer getAction_id() {
+//         return action_id;
+//     }
+
+//     public void setAction_id(Integer action_id) {
+//         this.action_id = action_id;
+//     }
+
+// }
