@@ -6,6 +6,8 @@ import {
   IonCardTitle,
   IonContent,
   IonHeader,
+  IonItem,
+  IonList,
   IonPage,
   IonTitle,
   IonToolbar,
@@ -23,27 +25,19 @@ const HomePage = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen className="ion-padding">
-        <IonCard onClick={() => {}}>
-          <img alt="Boston Celtics" src={BOS} width="200px" height="200px" />
+        <IonCard routerLink="/team/BOS" routerDirection="back">
+          <img alt="Boston Celtics" src={BOS} width="100%" height="100%" />
           <IonCardHeader>
             <IonCardTitle>BOS</IonCardTitle>
             <IonCardSubtitle>Boston Celtics</IonCardSubtitle>
           </IonCardHeader>
-
-          <IonCardContent>
-            Joueur 1, Joueur 2, Joueur 3, Joueur 4, Joueur 5
-          </IonCardContent>
         </IonCard>
-        <IonCard onClick={() => {}}>
-          <img alt="Boston Celtics" src={PHI} width="200px" height="200px" />
+        <IonCard routerLink="/team/PHI" routerDirection="back">
+          <img alt="Philadelphia" src={PHI} width="100%" height="100%" />
           <IonCardHeader>
             <IonCardTitle>PHI</IonCardTitle>
             <IonCardSubtitle>Philadelphia 76ers</IonCardSubtitle>
           </IonCardHeader>
-
-          <IonCardContent>
-            Joueur 1, Joueur 2, Joueur 3, Joueur 4, Joueur 5
-          </IonCardContent>
         </IonCard>
       </IonContent>
     </IonPage>
